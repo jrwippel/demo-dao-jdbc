@@ -6,6 +6,7 @@ import model.entities.Department;
 import model.entities.Seller;
 import model.entities.SellerDao;
 
+import javax.sound.midi.Soundbank;
 import java.util.Date;
 
 public class Program {
@@ -14,8 +15,9 @@ public class Program {
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
-        Seller seller = sellerDao.findById(3);
+        System.out.println("=== Test 1: Seller findById ===");
 
+        Seller seller = sellerDao.findById(3);
 
         System.out.println(seller);
     }
