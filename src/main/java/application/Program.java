@@ -9,11 +9,15 @@ import model.entities.SellerDao;
 import javax.sound.midi.Soundbank;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class Program {
 
     public static void main (String[] args){
         SellerDao sellerDao = DaoFactory.createSellerDao();
+
+        Scanner sc = new Scanner(System.in);
+
 
         System.out.println("=== Test 1: Seller findById ===");
         Seller seller = sellerDao.findById(3);
@@ -38,10 +42,17 @@ public class Program {
         System.out.println("Inserted! New Id = "+newseller.getId());
 
         System.out.println("=== Test 5: Seller update ===");
-
         seller = sellerDao.findById(1);
         seller.setName("James Bond");
         sellerDao.update(seller);
         System.out.println("Update Completed!");
+
+        System.out.println("=== Test 6: Seller delete ===");
+
+        System.out.print("Enter with ID for delete: ");
+        int id = sc.nextInt();
+        sellerDao.deleteById(id);
+        System.out.println("Delete completed!");
+
     }
 }
