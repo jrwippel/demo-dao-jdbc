@@ -68,7 +68,30 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
     @Override
     public List<Department> findAll() {
-        return null;
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try{
+            preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM department ORDER BY Name");
+            resultSet = preparedStatement.executeQuery();
+            List <Department> departmentList = new ArrayList<>();
+
+            while (resultSet.next()){
+
+                Department department = InstanciateDepartment(resultSet);
+                departmentList.add(department);
+            }
+            return departmentList;
+        }
+        catch ( SQLException e){
+            throw new  DbException(e.getMessage());
+        }
+        finally {
+            DB.closeResultSet(resultSet);
+            DB.closeStatement(preparedStatement);
+        }
     }
 
     private Department InstanciateDepartment(ResultSet resultSet) throws SQLException {
