@@ -26,6 +26,9 @@ public class Programa2 {
             System.out.println(obj);
         }
 
-
+        System.out.println("=== Test 3: Department insert ===");
+        Department newdepartment = new Department(5, "Tecnology");
+        departmentDao.insert(newdepartment);
+        System.out.println("Inserted new ID:"+ newdepartment.getId());
     }
 }
