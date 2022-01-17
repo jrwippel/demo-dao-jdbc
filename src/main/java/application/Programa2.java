@@ -30,5 +30,11 @@ public class Programa2 {
         Department newdepartment = new Department(5, "Tecnology");
         departmentDao.insert(newdepartment);
         System.out.println("Inserted new ID:"+ newdepartment.getId());
+
+        System.out.println("=== Test 4: Department update ===");
+        department = departmentDao.findById(3);
+        department.setName("Engenary");
+        departmentDao.update(department);
+        System.out.println("Update Completed!");
     }
 }

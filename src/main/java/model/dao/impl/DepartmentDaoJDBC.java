@@ -41,8 +41,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
             else{
                 throw new DbException("Unexpected Error:No Rows affectd!");
             }
-        }
-        catch (SQLException e){
+        } catch (SQLException e){
             throw new DbException(e.getMessage());
         }
         finally {
@@ -53,6 +52,24 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
     @Override
     public void update(Department obj) {
+
+        PreparedStatement preparedStatement = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE department " +
+                            "SET Name = ? " +
+                            "WHERE Id = ?");
+            preparedStatement.setString(1, obj.getName());
+            preparedStatement.setInt(2, obj.getId());
+            preparedStatement.executeUpdate();
+
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(preparedStatement);
+        }
 
     }
 
