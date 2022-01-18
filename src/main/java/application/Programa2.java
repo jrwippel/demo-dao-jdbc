@@ -6,10 +6,13 @@ import model.entities.DepartmentDao;
 import model.entities.Seller;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Programa2 {
 
     public static void main(String[]args){
+
+        Scanner sc = new Scanner(System.in);
 
 
 
@@ -36,5 +39,12 @@ public class Programa2 {
         department.setName("Engenary");
         departmentDao.update(department);
         System.out.println("Update Completed!");
+
+        System.out.println("=== Test 5: Department delete ===");
+        System.out.println("Enter ID for delete:");
+        int id = sc.nextInt();
+        departmentDao.deleteById(id);
+        System.out.println("Delete Completed");
+
     }
 }
